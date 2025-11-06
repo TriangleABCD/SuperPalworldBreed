@@ -182,6 +182,7 @@ int main(int argc, char ** argv) {
   que.push(pal1_id);
   std::map<int, bool> visited;
   std::map<int, int> father;
+  visited[pal1_id] = true;
   
   bool found = false;
   while (!que.empty()) {
@@ -192,12 +193,11 @@ int main(int argc, char ** argv) {
       break;
     }
 
-    visited[cur] = true;
-
     for (size_t i = 0; i < pals.size(); i++) {
       if (visited[pals[i].id]) continue;
       if (matrix[cur][pals[i].id] > 0) {
         que.push(pals[i].id);
+        visited[pals[i].id] = true;
         father[pals[i].id] = cur;
       }
     }
